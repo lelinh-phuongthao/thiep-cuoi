@@ -4280,19 +4280,50 @@
       font-weight: 500;
     }
 
-    #WEDDING_INV_TAB_WRAP .wedding-inv-tab .wedding-inv-chev {
-      font-size: 10px;
-      opacity: 0.75;
-      line-height: 1;
+    /* Chevron mảnh — một icon / nút, nhảy chậm */
+    @keyframes weddingInvChevBounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(5px);
+      }
     }
 
-    #WEDDING_INV_TAB_WRAP .wedding-inv-tab.active .wedding-inv-chev {
-      opacity: 1;
+    #WEDDING_INV_TAB_WRAP .wedding-inv-chev-wrap {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+      vertical-align: middle;
+      line-height: 0;
+      animation: weddingInvChevBounce 1.75s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    #WEDDING_INV_TAB_WRAP .wedding-inv-chev-svg {
+      display: block;
+      width: 13px;
+      height: 8px;
+      flex-shrink: 0;
+      color: inherit;
+    }
+
+    #WEDDING_INV_TAB_WRAP .wedding-inv-chev-svg path {
+      vector-effect: non-scaling-stroke;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #WEDDING_INV_TAB_WRAP .wedding-inv-chev-wrap {
+        animation: none;
+      }
     }
 
     #SECTION3 {
       --wedding-inv-content-push: 56px;
-      height: calc(1716.62px + var(--wedding-inv-content-push)) !important;
+      height: calc(1670.62px + var(--wedding-inv-content-push)) !important;
     }
 
     #HEADLINE78 {
@@ -5308,9 +5339,17 @@
         </div>
         <div id="WEDDING_INV_TAB_WRAP" aria-label="Chọn thiệp nhà gái hoặc nhà trai">
           <button type="button" id="WEDDING_INV_BTN_GAI" class="wedding-inv-tab wedding-inv-tab--gai active"
-            aria-pressed="true">Thiệp cưới nhà Gái<span class="wedding-inv-chev" aria-hidden="true">▾</span></button>
+            aria-pressed="true">Thiệp cưới nhà Gái<span class="wedding-inv-chev-wrap" aria-hidden="true"><svg
+                class="wedding-inv-chev-svg" viewBox="0 0 12 8" focusable="false">
+                <path d="M1.5 1.5 L6 6.25 L10.5 1.5" fill="none" stroke="currentColor" stroke-width="1.1"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></span></button>
           <button type="button" id="WEDDING_INV_BTN_TRAI" class="wedding-inv-tab wedding-inv-tab--trai"
-            aria-pressed="false">Thiệp cưới nhà Trai<span class="wedding-inv-chev" aria-hidden="true">▾</span></button>
+            aria-pressed="false">Thiệp cưới nhà Trai<span class="wedding-inv-chev-wrap" aria-hidden="true"><svg
+                class="wedding-inv-chev-svg" viewBox="0 0 12 8" focusable="false">
+                <path d="M1.5 1.5 L6 6.25 L10.5 1.5" fill="none" stroke="currentColor" stroke-width="1.1"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></span></button>
         </div>
         <div data-action="true" id="GROUP43" class='ladi-element wedding-inv-switched-off'>
           <div class='ladi-group'>
