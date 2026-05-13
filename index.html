@@ -2089,8 +2089,8 @@
     #IMAGE64>.ladi-image>.ladi-image-background,
     #BOX23,
     #POPUP2,
-    #IMAGE67,
-    #IMAGE67>.ladi-image>.ladi-image-background,
+    #IMAGE69,
+    #IMAGE69>.ladi-image>.ladi-image-background,
     #BOX27 {
       top: 0px;
       left: 0px;
@@ -2229,13 +2229,17 @@
     #HEADLINE121>.ladi-headline:hover,
     #PARAGRAPH1>.ladi-paragraph:hover,
     #HEADLINE122>.ladi-headline:hover,
-    #IMAGE67:hover>.ladi-image,
     #HEADLINE125>.ladi-headline:hover,
     #HEADLINE126>.ladi-headline:hover,
     #HEADLINE127>.ladi-headline:hover,
+    #HEADLINE128>.ladi-headline:hover,
+    #HEADLINE129>.ladi-headline:hover,
+    #HEADLINE130>.ladi-headline:hover,
     #IMAGE68:hover>.ladi-image,
+    #IMAGE69:hover>.ladi-image,
     #BOX26>.ladi-box:hover,
-    #BOX27>.ladi-box:hover {
+    #BOX27>.ladi-box:hover,
+    #POPUP2 .gift-copy-btn:hover {
       opacity: 1;
     }
 
@@ -4109,27 +4113,34 @@
 
     #POPUP2 {
       width: 420px;
-      height: 485px;
+      height: 600px;
     }
 
-    #IMAGE67 {
-      width: 420.721px;
-      height: 485px;
+    #POPUP2>.ladi-popup {
+      max-height: 88vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
-    #IMAGE67>.ladi-image>.ladi-image-background {
-      width: 420.721px;
-      height: 688.935px;
-      background-image: url("https://w.ladicdn.com/s750x1000/6322a62f2dad980013bb5005/untitled-3-20250420033408-bje7w.png");
+    #POPUP2 #IMAGE67 {
+      display: none !important;
+    }
+
+    /* Nền BOX27 không che nội dung (trước đây nằm cuối DOM → phủ hết QR & chữ) */
+    #POPUP2 #BOX27 {
+      z-index: 0 !important;
+      pointer-events: none;
     }
 
     #HEADLINE125 {
-      width: 129px;
-      top: 305.97px;
-      left: 170px;
+      width: 200px;
+      top: 16px;
+      left: 28px;
     }
 
-    #HEADLINE125>.ladi-headline {
+    #HEADLINE125>.ladi-headline,
+    #HEADLINE128>.ladi-headline {
       font-family: MUZUViWSVAtQVJDSVRUWUEtQkVHQVRSSSPVEY;
       font-size: 30.41px;
       line-height: 1.6;
@@ -4138,16 +4149,22 @@
     }
 
     #HEADLINE126,
-    #HEADLINE127 {
+    #HEADLINE129 {
       width: 280px;
     }
 
-    #HEADLINE126 {
-      top: 346.167px;
-      left: 170px;
+    #HEADLINE127,
+    #HEADLINE130 {
+      width: 168px;
     }
 
-    #HEADLINE126>.ladi-headline {
+    #HEADLINE126 {
+      top: 52px;
+      left: 28px;
+    }
+
+    #HEADLINE126>.ladi-headline,
+    #HEADLINE129>.ladi-headline {
       font-family: TESQSSRUdVTEFSLlRURg;
       font-size: 20px;
       line-height: 1.6;
@@ -4157,11 +4174,13 @@
     }
 
     #HEADLINE127 {
-      top: 394.003px;
-      left: 170px;
+      top: 86px;
+      left: 232px;
+      width: 168px;
     }
 
-    #HEADLINE127>.ladi-headline {
+    #HEADLINE127>.ladi-headline,
+    #HEADLINE130>.ladi-headline {
       font-family: TESQSSRUdVTEFSLlRURg;
       font-size: 21px;
       line-height: 1.5;
@@ -4169,10 +4188,35 @@
       text-align: left;
     }
 
+    #IMAGE68 {
+      width: 184px;
+      height: 184px;
+      top: 84px;
+      left: 28px;
+    }
+
+    #IMAGE68>.ladi-image>.ladi-image-background {
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-image: url("https://img.huanloanwedding.com/cdn-cgi/image/width=1200,quality=75/lelinh-phuongthao/QR_CR.jpg");
+    }
+
+    #GIFT_ROW_CR_STK {
+      width: 210px;
+      min-height: 40px;
+      top: 128px;
+      left: 232px;
+    }
+
     #LINE5 {
-      width: 187px;
-      top: 374.167px;
-      left: 170px;
+      width: 368px;
+      top: 286px;
+      left: 26px;
     }
 
     #LINE5>.ladi-line>.ladi-line-container {
@@ -4187,41 +4231,126 @@
       padding: 8px 0px;
     }
 
-    #IMAGE68 {
-      width: 126.528px;
-      height: 127.033px;
-      top: 323.715px;
-      left: 27.619px;
+    #HEADLINE128 {
+      width: 200px;
+      top: 308px;
+      left: 28px;
     }
 
-    #IMAGE68>.ladi-image>.ladi-image-background {
-      width: 150.94px;
-      height: 230.033px;
-      top: -28px;
-      left: -12px;
-      background-image: url("https://img.huanloanwedding.com/cdn-cgi/image/width=1200,quality=75/lelinh-phuongthao/QR_CR.jpg");
+    #HEADLINE129 {
+      top: 344px;
+      left: 28px;
+    }
+
+    #IMAGE69 {
+      width: 184px;
+      height: 184px;
+      top: 376px;
+      left: 28px;
+    }
+
+    #IMAGE68>.ladi-image>.ladi-image-background,
+    #IMAGE69>.ladi-image>.ladi-image-background {
+      opacity: 1 !important;
+    }
+
+    #IMAGE69>.ladi-image>.ladi-image-background {
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-image: url("https://img.huanloanwedding.com/cdn-cgi/image/width=1200,quality=75/lelinh-phuongthao/QR_CD.jpg");
+    }
+
+    #HEADLINE130 {
+      top: 380px;
+      left: 232px;
+      width: 168px;
+    }
+
+    #GIFT_ROW_CD_STK {
+      width: 210px;
+      min-height: 40px;
+      top: 422px;
+      left: 232px;
+    }
+
+    #POPUP2 .gift-stk-copy-wrap {
+      z-index: 3;
+    }
+
+    #POPUP2 .gift-stk-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+
+    #POPUP2 .gift-stk-label {
+      font-family: TESQSSRUdVTEFSLlRURg;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgb(146, 131, 98);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    #POPUP2 .gift-stk-num {
+      font-family: TESQSSRUdVTEFSLlRURg;
+      font-size: 18px;
+      line-height: 1.3;
+      color: rgb(62, 52, 40);
+      letter-spacing: 0.04em;
+      flex: 1 1 auto;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    #POPUP2 .gift-copy-btn {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgb(146, 131, 98);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      color: rgb(146, 131, 98);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #POPUP2 .gift-copy-btn:active {
+      transform: scale(0.96);
+    }
+
+    #POPUP2 .gift-copy-svg {
+      display: block;
     }
 
     #BOX26 {
-      width: 127.033px;
-      height: 127.033px;
-      top: 323.715px;
-      left: -289.634px;
-      mix-blend-mode: screen;
-      will-change: transform, opacity;
+      display: none !important;
     }
 
     #BOX27 {
       width: 420px;
-      height: 291px;
+      height: 600px;
     }
 
     #BOX27>.ladi-box {
-      background-image: url("https://img.huanloanwedding.com/cdn-cgi/image/width=1200,quality=75/lelinh-phuongthao/9.webp");
-      background-size: cover;
+      background-image: none !important;
+      background-color: rgb(255, 253, 249);
+      background-size: auto;
       background-origin: content-box;
       background-position: 50% 50%;
-      background-repeat: repeat;
+      background-repeat: no-repeat;
       background-attachment: scroll;
     }
 
@@ -5681,9 +5810,16 @@
             </div>
           </div>
         </div>
+        <!-- Popup quà mừng: thêm file QR_CD.jpg (cùng CDN thư mục QR_CR); sửa STK cô dâu trong #GIFT_ROW_CD_STK (số hiển thị + data-copy) và #HEADLINE130 nếu đổi ngân hàng -->
         <div id="POPUP2" class='ladi-element'>
           <div class='ladi-popup'>
             <div class="ladi-popup-background"></div>
+            <div id="BOX27" class='ladi-element'>
+              <div class='ladi-box ladi-transition'></div>
+            </div>
+            <div id="BOX26" class='ladi-element'>
+              <div class='ladi-box ladi-transition'></div>
+            </div>
             <div id="IMAGE67" class='ladi-element'>
               <div class='ladi-image ladi-transition'>
                 <div class="ladi-image-background"></div>
@@ -5693,26 +5829,58 @@
               <h3 class='ladi-headline ladi-transition'>Chú rể</h3>
             </div>
             <div id="HEADLINE126" class='ladi-element'>
-              <h3 class='ladi-headline ladi-transition'>Do Le Linh</h3>
-            </div>
-            <div id="HEADLINE127" class='ladi-element'>
-              <h3 class='ladi-headline ladi-transition'>MB Bank<br>0973005699<br></h3>
-            </div>
-            <div id="LINE5" class='ladi-element'>
-              <div class='ladi-line'>
-                <div class="ladi-line-container"></div>
-              </div>
+              <h3 class='ladi-headline ladi-transition'>Đỗ Lê Linh</h3>
             </div>
             <div id="IMAGE68" class='ladi-element'>
               <div class='ladi-image ladi-transition'>
                 <div class="ladi-image-background"></div>
               </div>
             </div>
-            <div id="BOX26" class='ladi-element'>
-              <div class='ladi-box ladi-transition'></div>
+            <div id="HEADLINE127" class='ladi-element'>
+              <h3 class='ladi-headline ladi-transition'>MB Bank</h3>
             </div>
-            <div id="BOX27" class='ladi-element'>
-              <div class='ladi-box ladi-transition'></div>
+            <div id="GIFT_ROW_CR_STK" class="ladi-element gift-stk-copy-wrap">
+              <div class="gift-stk-row">
+                <span class="gift-stk-label">STK</span>
+                <span class="gift-stk-num">0973005699</span>
+                <button type="button" class="gift-copy-btn" data-copy="0973005699" title="Sao chép số tài khoản"
+                  aria-label="Sao chép số tài khoản chú rể"><svg class="gift-copy-svg" viewBox="0 0 24 24" width="18"
+                    height="18" aria-hidden="true">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                  </svg></button>
+              </div>
+            </div>
+            <div id="LINE5" class='ladi-element'>
+              <div class='ladi-line'>
+                <div class="ladi-line-container"></div>
+              </div>
+            </div>
+            <div id="HEADLINE128" class='ladi-element'>
+              <h3 class='ladi-headline ladi-transition'>Cô dâu</h3>
+            </div>
+            <div id="HEADLINE129" class='ladi-element'>
+              <h3 class='ladi-headline ladi-transition'>Phương Thảo</h3>
+            </div>
+            <div id="IMAGE69" class='ladi-element'>
+              <div class='ladi-image ladi-transition'>
+                <div class="ladi-image-background"></div>
+              </div>
+            </div>
+            <div id="HEADLINE130" class='ladi-element'>
+              <h3 class='ladi-headline ladi-transition'>MB Bank</h3>
+            </div>
+            <div id="GIFT_ROW_CD_STK" class="ladi-element gift-stk-copy-wrap">
+              <div class="gift-stk-row">
+                <span class="gift-stk-label">STK</span>
+                <span class="gift-stk-num">0987654321</span>
+                <button type="button" class="gift-copy-btn" data-copy="0987654321" title="Sao chép số tài khoản"
+                  aria-label="Sao chép số tài khoản cô dâu"><svg class="gift-copy-svg" viewBox="0 0 24 24" width="18"
+                    height="18" aria-hidden="true">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                  </svg></button>
+              </div>
             </div>
           </div>
         </div>
@@ -5981,6 +6149,80 @@
         } else {
           initWeddingInvSwitch();
         }
+      })();
+    </script>
+    <script type="text/javascript">
+      (function () {
+        function initIsOwnFromGuestSelect() {
+          var form = document.getElementById('FORM2');
+          var isOwn = document.getElementById('isOwn');
+          if (!form || !isOwn) return;
+          function sync() {
+            var sel = form.querySelector('select[name="form_item9"]');
+            if (!sel) return;
+            if (sel.value === 'Khách mời cô dâu') isOwn.value = 'codau';
+            else if (sel.value === 'Khách mời chú rể') isOwn.value = 'chure';
+            else isOwn.value = 'chure';
+          }
+          form.addEventListener('change', function (e) {
+            if (e.target && e.target.name === 'form_item9') sync();
+          });
+          form.addEventListener('submit', sync, true);
+          sync();
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initIsOwnFromGuestSelect);
+        } else {
+          initIsOwnFromGuestSelect();
+        }
+      })();
+    </script>
+    <script type="text/javascript">
+      (function () {
+        var toastEl = null;
+        var toastTimer = null;
+        function showGiftCopyToast(msg) {
+          if (!toastEl) {
+            toastEl = document.createElement('div');
+            toastEl.id = 'gift-copy-toast';
+            toastEl.setAttribute('role', 'status');
+            toastEl.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:999999;padding:10px 18px;border-radius:10px;background:rgba(62,52,40,.92);color:#fff;font:14px/1.4 system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.2);pointer-events:none;opacity:0;transition:opacity .2s ease';
+            document.body.appendChild(toastEl);
+          }
+          toastEl.textContent = msg || 'Đã sao chép';
+          toastEl.style.opacity = '1';
+          if (toastTimer) clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { toastEl.style.opacity = '0'; }, 1800);
+        }
+        function copyGiftText(text) {
+          if (!text) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { showGiftCopyToast('Đã sao chép'); }).catch(fallback);
+          } else fallback();
+          function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.cssText = 'position:fixed;left:-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand('copy');
+              showGiftCopyToast('Đã sao chép');
+            } catch (e) {
+              showGiftCopyToast('Không sao chép được');
+            }
+            document.body.removeChild(ta);
+          }
+        }
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest('#POPUP2 .gift-copy-btn');
+          if (!btn) return;
+          var text = (btn.getAttribute('data-copy') || '').trim();
+          if (!text) return;
+          e.preventDefault();
+          copyGiftText(text);
+        });
       })();
     </script>
 </body>
