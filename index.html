@@ -4336,6 +4336,41 @@
       display: block;
     }
 
+    /* Ladi tạo .popup-close động: vùng bấm nhỏ / dễ bị che — dùng nút dự phòng bên dưới */
+    #POPUP1 > .popup-close,
+    #POPUP2 > .popup-close {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* Nút là con trực tiếp #POPUP2 (anh em .ladi-popup) — không chèn vào .ladi-popup để tránh lỗi Ladi */
+    #POPUP1_CLOSE_FALLBACK,
+    #POPUP2_CLOSE_FALLBACK {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 9000000091;
+      width: 44px;
+      height: 44px;
+      margin: 4px;
+      padding: 0;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: rgb(62, 52, 40);
+      font: 300 28px/44px system-ui, sans-serif;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #POPUP1_CLOSE_FALLBACK:hover,
+    #POPUP2_CLOSE_FALLBACK:hover {
+      background: rgba(146, 131, 98, 0.12);
+    }
+
     #BOX26 {
       display: none !important;
     }
@@ -5810,6 +5845,8 @@
               <h3 class='ladi-headline ladi-transition'>Thank you!<br></h3>
             </div>
           </div>
+          <button type="button" id="POPUP1_CLOSE_FALLBACK" class="gift-popup-close-fallback"
+            aria-label="Đóng cửa sổ">×</button>
         </div>
         <!-- Popup quà mừng: thêm file QR_CD.jpg (cùng CDN thư mục QR_CR); sửa STK cô dâu trong #GIFT_ROW_CD_STK (số hiển thị + data-copy) và #HEADLINE130 nếu đổi ngân hàng -->
         <div id="POPUP2" class='ladi-element'>
@@ -5884,6 +5921,8 @@
               </div>
             </div>
           </div>
+          <button type="button" id="POPUP2_CLOSE_FALLBACK" class="gift-popup-close-fallback"
+            aria-label="Đóng cửa sổ quà mừng">×</button>
         </div>
       </div>
     </div>
@@ -6208,6 +6247,108 @@
           e.preventDefault();
           copyGiftText(text);
         });
+        function bindPopupCloseFallback(popupId) {
+          var popupClosing = false;
+          var btn = document.getElementById(popupId + '_CLOSE_FALLBACK');
+          if (!btn || btn.dataset.bound === '1') return;
+          btn.dataset.bound = '1';
+
+          function closePopupDomOnly() {
+            var pop = document.getElementById(popupId);
+            var back = document.getElementById('backdrop-popup');
+            var L = window.LadiPageScript;
+            var section = document.getElementById('SECTION_POPUP');
+            if (pop) {
+              try {
+                pop.removeAttribute('data-timeout-id');
+                pop.removeAttribute('data-timeout-id-2');
+                pop.removeAttribute('data-timeout-id-3');
+                pop.removeAttribute('data-scroll');
+                pop.removeAttribute('data-fixed-close');
+                pop.removeAttribute('data-popup-backdrop');
+                pop.style.removeProperty('overflow-y');
+                pop.style.removeProperty('overflow-x');
+                pop.style.removeProperty('max-height');
+                pop.style.removeProperty('display');
+                pop.style.removeProperty('z-index');
+                var inner = pop.getElementsByClassName('ladi-popup')[0];
+                if (inner) inner.style.removeProperty('height');
+              } catch (e0) { }
+              pop.style.setProperty('display', 'none', 'important');
+            }
+            if (back) {
+              back.style.setProperty('display', 'none', 'important');
+            }
+            var sp = document.getElementById('style_popup');
+            if (sp && sp.parentNode) {
+              sp.parentNode.removeChild(sp);
+            }
+            try {
+              if (L && L.runtime && L.runtime.tmp) {
+                delete L.runtime.tmp['popup_closing_' + popupId];
+                delete L.runtime.tmp.current_default_popup_id;
+              }
+            } catch (e1) { }
+            try {
+              var sy = L && L.runtime && L.runtime.tmp ? L.runtime.tmp.bodyScrollY : null;
+              if (sy != null && !isNaN(sy)) window.scrollTo(0, sy);
+              if (L && L.runtime && L.runtime.tmp) L.runtime.tmp.bodyScrollY = null;
+            } catch (e2) { }
+            try {
+              document.body.style.removeProperty('height');
+              document.body.style.removeProperty('position');
+              document.body.style.removeProperty('width');
+              document.body.style.removeProperty('top');
+            } catch (e3) { }
+            try {
+              if (section) {
+                var els = section.querySelectorAll('.ladi-container > .ladi-element');
+                for (var i = 0; i < els.length; i++) {
+                  els[i].style.removeProperty('z-index');
+                }
+              }
+            } catch (e4) { }
+          }
+          
+          function closePopup(ev) {
+            if (popupClosing) return;
+            popupClosing = true;
+            setTimeout(function () { popupClosing = false; }, 500);
+            if (ev) {
+              ev.preventDefault();
+              ev.stopPropagation();
+            }
+            var L = window.LadiPageScript;
+            try {
+              if (L && typeof L.runRemovePopup === 'function') {
+                L.runRemovePopup(popupId, true);
+                return;
+              }
+            } catch (e5) { }
+            closePopupDomOnly();
+          }
+
+          btn.addEventListener('click', closePopup, true);
+          btn.addEventListener('touchend', function (e) {
+            closePopup(e);
+          }, { passive: false });
+        }
+
+        function bindAllPopupCloseOnce() {
+          bindPopupCloseFallback('POPUP1');
+          bindPopupCloseFallback('POPUP2');
+        }
+        
+        bindAllPopupCloseOnce();
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindAllPopupCloseOnce);
+        }
+        var bindTries = 0;
+        var bindTimer = setInterval(function () {
+          bindAllPopupCloseOnce();
+          bindTries += 1;
+          if (bindTries > 40) clearInterval(bindTimer);
+        }, 250);
       })();
     </script>
 </body>
